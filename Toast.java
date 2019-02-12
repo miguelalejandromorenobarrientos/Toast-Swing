@@ -120,7 +120,7 @@ public class Toast extends JWindow
 	/**
 	 * Show toast. Can be called several times
 	 * 
-	 * @return the toast
+	 * @return the toast 
 	 */
 	public Toast showToast()
 	{
