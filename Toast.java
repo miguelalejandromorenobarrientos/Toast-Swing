@@ -31,7 +31,7 @@ import com.sun.istack.internal.Nullable;
  * Toast doesn't block EDT (Event Dispatch Thread).
  * 
  * @author Miguel Alejandro Moreno Barrientos, (C) 2019
- * @version 0.1.0
+ * @version 0.1.1
  */
 public class Toast extends JWindow 
 {
@@ -55,14 +55,16 @@ public class Toast extends JWindow
 	 * Create toast x-centered and y-south
 	 * 
 	 * @param msg message to show
-	 * @param time time for hiding
+	 * @param time time for hiding (milliseconds)
 	 */
 	public Toast( @NotNull String msg, int time )
 	{
 		this.time = time;
 
+		setAlwaysOnTop( true );
+		
 		// initialize JLabel toast
-		toastLabel = new JLabel( cutString(msg, maxLength, "\u2026") );
+		toastLabel = new JLabel( cutString( msg, maxLength, "\u2026" ) );
 		toastLabel.setOpaque(true);
 		toastLabel.setBorder( BorderFactory.createEmptyBorder(10, 10, 10, 10) );
 		toastLabel.setFont( new Font( Font.SANS_SERIF, Font.BOLD, 18 ) );
@@ -76,7 +78,7 @@ public class Toast extends JWindow
 	 * 
 	 * @param msg message to show
 	 * @param point screen position (left-upper corner)
-	 * @param time time for hiding
+	 * @param time time for hiding (milliseconds)
 	 */
 	public Toast( @NotNull String msg, @Nullable Point point, int time ) 
 	{
@@ -120,7 +122,7 @@ public class Toast extends JWindow
 	/**
 	 * Show toast. Can be called several times
 	 * 
-	 * @return the toast 
+	 * @return the toast
 	 */
 	public Toast showToast()
 	{
