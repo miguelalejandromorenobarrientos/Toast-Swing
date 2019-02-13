@@ -39,8 +39,8 @@ public class Toast extends JWindow
 
 	public static final int HALF_SECOND = 500, 
 							ONE_SECOND = 1000, 
-							TWO_SECOND = 2000, 
-							FOUR_SECOND = 4000; 
+							TWO_SECONDS = 2000, 
+							FOUR_SECONDS = 4000; 
 	
 	private int time;  // time until start to disappear
 
@@ -140,7 +140,7 @@ public class Toast extends JWindow
 			setLocationRelativeTo( null );
 			setLocation( getLocation().x, 
 						 getLocation().y + Math.round( 
-							 	getToolkit().getScreenSize().height * 0.4f ) );
+							 	getToolkit().getScreenSize().height * 0.33f ) );
 		}
 		else
 			setLocation( point );
