@@ -12,6 +12,7 @@
 //
 //     You should have received a copy of the GNU General Public License
 //     along with Toast.  If not, see <https://www.gnu.org/licenses/>.
+package jdrafting.gui;
 
 import java.awt.Color;
 import java.awt.Font;
@@ -30,8 +31,8 @@ import com.sun.istack.internal.Nullable;
  * <br>
  * Toast doesn't block EDT (Event Dispatch Thread).
  * 
- * @author Miguel Alejandro Moreno Barrientos, (C) 2019
- * @version 0.1.1
+ * @author Miguel Alejandro Moreno Barrientos, (C) 2019-2020
+ * @version 0.1.2
  */
 public class Toast extends JWindow 
 {
@@ -46,6 +47,8 @@ public class Toast extends JWindow
 
 	/** label to show */
 	protected JLabel toastLabel;
+	/** message */
+	protected String msg;
 	/** toast location (when developer gives the coordinates) */
 	protected Point point = null;
 	/** max message length shown */
@@ -59,7 +62,8 @@ public class Toast extends JWindow
 	 */
 	public Toast( @NotNull String msg, int time )
 	{
-		this.time = time;
+		this.msg = msg;
+		this.time = time;		
 
 		setAlwaysOnTop( true );
 		
@@ -111,8 +115,14 @@ public class Toast extends JWindow
 	public Toast setMaxLength( int maxLength ) 
 	{ 
 		this.maxLength = maxLength;		
+		toastLabel.setText( cutString( msg, maxLength, "\u2026" ) );
 		return this;
 	}
+	
+	/**
+	 * @return toast message
+	 */
+	public String getMsg() { return msg; }
 	
 	/**
 	 * @return time for hiding
@@ -140,7 +150,7 @@ public class Toast extends JWindow
 			setLocationRelativeTo( null );
 			setLocation( getLocation().x, 
 						 getLocation().y + Math.round( 
-							 	getToolkit().getScreenSize().height * 0.33f ) );
+							 						getToolkit().getScreenSize().height * 0.33f ) );
 		}
 		else
 			setLocation( point );
@@ -158,9 +168,9 @@ public class Toast extends JWindow
                 	setVisible( false );
                 	((Timer) evt.getSource()).stop();
                 }
-			});
+			});  // disappearTimer
 			disappearTimer.start();
-		});
+		});  // closingTimer
 		closingTimer.setRepeats(false);
 		closingTimer.start();
 		
