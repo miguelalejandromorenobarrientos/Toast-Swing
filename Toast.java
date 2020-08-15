@@ -12,7 +12,6 @@
 //
 //     You should have received a copy of the GNU General Public License
 //     along with Toast.  If not, see <https://www.gnu.org/licenses/>.
-package jdrafting.gui;
 
 import java.awt.Color;
 import java.awt.Font;
@@ -39,9 +38,9 @@ public class Toast extends JWindow
 	private static final long serialVersionUID = 1L;
 
 	public static final int HALF_SECOND = 500, 
-							ONE_SECOND = 1000, 
-							TWO_SECONDS = 2000, 
-							FOUR_SECONDS = 4000; 
+				ONE_SECOND = 1000, 
+				TWO_SECONDS = 2000, 
+				FOUR_SECONDS = 4000; 
 	
 	private int time;  // time until start to disappear
 
